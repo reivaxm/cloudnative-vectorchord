@@ -88,7 +88,7 @@ jobs:
             if (context.eventName == "pull_request") return false;
             if (context.eventName == "workflow_dispatch") return true;
             return "${{ steps.changed-version.outputs.any_changed }}" == "true";
-        
+
       - name: Set major postgres version
         id: version
         run: |
@@ -104,7 +104,7 @@ jobs:
             latest=false
           images: |
             name=ghcr.io/${{ github.repository }}
-            name=tensorchord/cloudnative-vectorchord
+            name=oreivaxm/cloudnative-vectorchord
           tags: |
             type=raw,value=${{ matrix.cnpg }}-${{ matrix.vectorchord }},enable=${{ steps.should-release.outputs.result }}
             type=raw,value=${{ steps.version.outputs.pg_major }}-${{ matrix.vectorchord }},enable=${{ steps.should-release.outputs.result }}
